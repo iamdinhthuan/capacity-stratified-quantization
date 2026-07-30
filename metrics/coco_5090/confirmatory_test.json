@@ -1,0 +1,74 @@
+{
+  "quant": "int8",
+  "observed_mean_high_minus_low": 0.05933183191459862,
+  "p_perm_one_sided": 0.55,
+  "n_permutations": 100,
+  "welch_t": 0.5326043731668636,
+  "welch_df": 7.778799877920207,
+  "p_welch_one_sided": 0.3045900273369737,
+  "kendall_tau_vs_logparams": 0.24444444444444444,
+  "p_kendall_two_sided": 0.38071979717813054,
+  "per_model": [
+    {
+      "model": "yolov8n",
+      "params_M": 3.2,
+      "group": "low",
+      "DIFF": -0.0343446653321037
+    },
+    {
+      "model": "yolov8s",
+      "params_M": 11.2,
+      "group": "low",
+      "DIFF": -0.013971723547181958
+    },
+    {
+      "model": "yolov8m",
+      "params_M": 25.9,
+      "group": "high",
+      "DIFF": 0.006618192550560953
+    },
+    {
+      "model": "yolov8l",
+      "params_M": 43.7,
+      "group": "high",
+      "DIFF": -0.005431670339702488
+    },
+    {
+      "model": "yolov8x",
+      "params_M": 68.2,
+      "group": "high",
+      "DIFF": 0.013958743165659648
+    },
+    {
+      "model": "dfine_n",
+      "params_M": 4.0,
+      "group": "low",
+      "DIFF": -0.37306018470540786
+    },
+    {
+      "model": "dfine_s",
+      "params_M": 10.0,
+      "group": "low",
+      "DIFF": -0.25045582974857383
+    },
+    {
+      "model": "dfine_m",
+      "params_M": 19.0,
+      "group": "low",
+      "DIFF": -0.29412509680973065
+    },
+    {
+      "model": "dfine_l",
+      "params_M": 31.0,
+      "group": "high",
+      "DIFF": -0.3498874828426608
+    },
+    {
+      "model": "dfine_x",
+      "params_M": 62.0,
+      "group": "high",
+      "DIFF": -0.3345561231038621
+    }
+  ],
+  "verdict": "H1 NOT SUPPORTED"
+}

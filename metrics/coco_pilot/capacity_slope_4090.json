@@ -1,0 +1,29 @@
+{
+ "device": "RTX 4090 / TRT 10.16",
+ "models": [
+  "yolo11n",
+  "yolo11s",
+  "yolo11m",
+  "yolo11l",
+  "yolo11x",
+  "yolov8n",
+  "yolov8s",
+  "yolov8m",
+  "yolov8l",
+  "yolov8x"
+ ],
+ "diff_int8": {
+  "yolo11n": -0.02364,
+  "yolo11s": -0.01155,
+  "yolo11m": 0.00801,
+  "yolo11l": 0.01005,
+  "yolo11x": 0.01613,
+  "yolov8n": -0.02433,
+  "yolov8s": -0.01252,
+  "yolov8m": 0.00985,
+  "yolov8l": 0.00236,
+  "yolov8x": 0.0222
+ },
+ "slope_per_decade": 0.03247002991129482,
+ "p_one_sided_permutation": 0.00039998000099995
+}

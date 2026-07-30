@@ -1,0 +1,26 @@
+# Ngưỡng kích thước — trục chính của bài (README §5.3, §10). Chiều cao bbox
+# tính trên ảnh gốc 2048x2048 (TT100K không resize).
+
+height_bins:
+  - {name: XS, min: 0,  max: 12}
+  - {name: S,  min: 12, max: 24}
+  - {name: M,  min: 24, max: 48}
+  - {name: L,  min: 48, max: 96}
+  - {name: XL, min: 96, max: .inf}
+
+# Bin diện tích chuẩn COCO (32^2, 96^2) để đối chiếu với literature.
+coco_area_bins:
+  - {name: small,  min: 0,    max: 1024}
+  - {name: medium, min: 1024, max: 9216}
+  - {name: large,  min: 9216, max: .inf}
+
+# Early-Warning Distance (EWD, README §10)
+ewd:
+  recall_threshold: 0.5   # rho: Recall_q(size >= s) >= rho
+  conf_threshold: 0.25    # ngưỡng confidence dùng để match (điểm vận hành chuẩn Ultralytics)
+  iou_threshold: 0.5
+  scan_step_px: 2         # bước quét s (px) khi tìm s* nhỏ nhất thỏa recall >= rho
+  scan_max_px: 200
+  pinhole:
+    H_real_m: 0.70   # chiều cao biển thực chuẩn dùng minh họa (0.6-0.75m)
+    f_px: 1500       # tiêu cự giả định (px) — minh họa, không phải camera thật

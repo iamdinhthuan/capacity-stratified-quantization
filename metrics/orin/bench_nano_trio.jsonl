@@ -1,0 +1,3 @@
+{"engine":"yolo11n_fp16","mean_ms":4.09357,"median_ms":4.09375,"p99_ms":4.10999,"qps":244.172,"vdd_in_mw":16450}
+{"engine":"yolo11n_fp32","mean_ms":7.31156,"median_ms":7.30859,"p99_ms":7.36719,"qps":136.713,"vdd_in_mw":18105}
+{"engine":"yolo11n_int8","mean_ms":6.36125,"median_ms":6.36084,"p99_ms":6.38281,"qps":157.136,"vdd_in_mw":15019}

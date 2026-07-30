@@ -1,0 +1,21 @@
+# Locked on the RTX 5090 (Blackwell sm_120) server, env conda `qtsd`, python 3.11.
+# torch/torchvision are the cu128 wheels — install those from the PyTorch index
+# BEFORE this file:
+#   pip install torch==2.11.0 torchvision==0.26.0 --index-url https://download.pytorch.org/whl/cu128
+torch==2.11.0            # +cu128 build
+torchvision==0.26.0      # +cu128 build
+ultralytics==8.4.95
+tensorrt==11.1.0.106     # pip wheel ships sm_120 kernels; trtexec CLI is NOT included
+nvidia-modelopt[all]==0.45.0
+onnx==1.21.0
+onnxruntime-gpu==1.24.4
+onnxsim==0.6.5
+pycocotools==2.0.11
+numpy==2.4.4
+scipy==1.17.1
+pandas==3.0.3
+matplotlib==3.11.0
+seaborn==0.13.2
+opencv-python==5.0.0
+pyyaml==6.0.3
+cuda-python              # for tools/infer_trt_raw.py + measure_system.py (raw TRT loader)

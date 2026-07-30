@@ -1,0 +1,10 @@
+{
+  "engine": "runs/detect/runs/yolo11x_fp32/weights/best.int8.engine",
+  "latency_mean_ms": 4.147088043973781,
+  "latency_p50_ms": 4.147095489315689,
+  "latency_p99_ms": 4.154856727691367,
+  "throughput_img_s": 241.13305273398296,
+  "power_w": 517.0,
+  "engine_size_mb": 65.60860633850098,
+  "n_iters": 500
+}

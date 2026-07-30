@@ -1,0 +1,71 @@
+{
+  "yolo11n": {
+    "fp16": {
+      "latency_mean_ms": 0.713793798466213,
+      "latency_p99_ms": 0.7175442873267457,
+      "throughput_img_s": 1400.96481946016,
+      "power_w": 363.0,
+      "engine_size_mb": 9.949214935302734
+    },
+    "int8": {
+      "latency_mean_ms": 0.7508656710851938,
+      "latency_p99_ms": 0.7606838358333334,
+      "throughput_img_s": 1331.7961367906767,
+      "power_w": 373.0,
+      "engine_size_mb": 14.620218276977539
+    },
+    "fp8": {
+      "latency_mean_ms": 0.7962356536881998,
+      "latency_p99_ms": 0.7997305266326293,
+      "throughput_img_s": 1255.9095983305376,
+      "power_w": 327.0,
+      "engine_size_mb": 7.968219757080078
+    }
+  },
+  "yolo11m": {
+    "fp16": {
+      "latency_mean_ms": 2.26802370196674,
+      "latency_p99_ms": 2.2756649035727605,
+      "throughput_img_s": 440.91249978244923,
+      "power_w": 546.0,
+      "engine_size_mb": 40.57631301879883
+    },
+    "int8": {
+      "latency_mean_ms": 2.11384469922632,
+      "latency_p99_ms": 2.119111107895151,
+      "throughput_img_s": 473.07165013872884,
+      "power_w": 467.0,
+      "engine_size_mb": 28.824403762817383
+    },
+    "fp8": {
+      "latency_mean_ms": 1.9300866217818111,
+      "latency_p99_ms": 1.940161450766027,
+      "throughput_img_s": 518.1114612756724,
+      "power_w": 497.0,
+      "engine_size_mb": 24.60781478881836
+    }
+  },
+  "yolo11x": {
+    "fp16": {
+      "latency_mean_ms": 5.059666305081919,
+      "latency_p99_ms": 5.093181221163832,
+      "throughput_img_s": 197.6414924825382,
+      "power_w": 567.0,
+      "engine_size_mb": 111.23049545288086
+    },
+    "int8": {
+      "latency_mean_ms": 4.147088043973781,
+      "latency_p99_ms": 4.154856727691367,
+      "throughput_img_s": 241.13305273398296,
+      "power_w": 517.0,
+      "engine_size_mb": 65.60860633850098
+    },
+    "fp8": {
+      "latency_mean_ms": 4.379816056694835,
+      "latency_p99_ms": 4.400828914367594,
+      "throughput_img_s": 228.3200908566547,
+      "power_w": 530.0,
+      "engine_size_mb": 60.91452407836914
+    }
+  }
+}

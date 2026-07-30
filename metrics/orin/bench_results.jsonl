@@ -1,0 +1,15 @@
+{"engine":"yolo11l_fp16","mean_ms":18.5039,"median_ms":18.5703,"p99_ms":18.7207,"qps":54.0064,"vdd_in_mw":19819}
+{"engine":"yolo11l_fp32","mean_ms":35.5731,"median_ms":35.4614,"p99_ms":36.5996,"qps":28.0774,"vdd_in_mw":20584}
+{"engine":"yolo11l_int8","mean_ms":15.3368,"median_ms":15.334,"p99_ms":15.3613,"qps":65.1641,"vdd_in_mw":17068}
+{"engine":"yolo11m_fp16","mean_ms":14.6279,"median_ms":14.5781,"p99_ms":15.2212,"qps":68.3227,"vdd_in_mw":20584}
+{"engine":"yolo11m_fp32","mean_ms":27.9905,"median_ms":28.1445,"p99_ms":28.8066,"qps":35.6919,"vdd_in_mw":20919}
+{"engine":"yolo11m_int8","mean_ms":11.7202,"median_ms":11.7109,"p99_ms":12.0801,"qps":85.2804,"vdd_in_mw":17576}
+{"engine":"yolo11n_fp16","mean_ms":4.10273,"median_ms":4.10156,"p99_ms":4.12305,"qps":243.631,"vdd_in_mw":16780}
+{"engine":"yolo11n_fp32","mean_ms":7.28825,"median_ms":7.28516,"p99_ms":7.34961,"qps":137.151,"vdd_in_mw":18325}
+{"engine":"yolo11n_int8","mean_ms":6.35796,"median_ms":6.35742,"p99_ms":6.37964,"qps":157.217,"vdd_in_mw":15139}
+{"engine":"yolo11s_fp16","mean_ms":6.60722,"median_ms":6.60547,"p99_ms":6.63672,"qps":151.286,"vdd_in_mw":18717}
+{"engine":"yolo11s_fp32","mean_ms":12.8707,"median_ms":12.9102,"p99_ms":13.3164,"qps":77.6547,"vdd_in_mw":19974}
+{"engine":"yolo11s_int8","mean_ms":8.21063,"median_ms":8.20898,"p99_ms":8.26172,"qps":121.741,"vdd_in_mw":16716}
+{"engine":"yolo11x_fp16","mean_ms":35.3289,"median_ms":35.291,"p99_ms":36.1777,"qps":28.2714,"vdd_in_mw":21146}
+{"engine":"yolo11x_fp32","mean_ms":67.7349,"median_ms":67.6289,"p99_ms":68.5488,"qps":14.7301,"vdd_in_mw":21432}
+{"engine":"yolo11x_int8","mean_ms":26.4207,"median_ms":26.3655,"p99_ms":26.7695,"qps":37.8147,"vdd_in_mw":18166}

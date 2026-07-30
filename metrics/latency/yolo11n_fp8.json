@@ -1,0 +1,10 @@
+{
+  "engine": "exports/yolo11n_fp8.plan",
+  "latency_mean_ms": 0.7962356536881998,
+  "latency_p50_ms": 0.7962025119923055,
+  "latency_p99_ms": 0.7997305266326293,
+  "throughput_img_s": 1255.9095983305376,
+  "power_w": 327.0,
+  "engine_size_mb": 7.968219757080078,
+  "n_iters": 500
+}

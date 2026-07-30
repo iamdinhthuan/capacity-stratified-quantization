@@ -1,0 +1,54 @@
+# --- large binaries: NEVER commit (regenerable / huge) ---
+# TT100K dataset (~36 GB) + calib images
+data/
+# FP32 training checkpoints (best.pt, ~5-160 MB each)
+runs/
+# ONNX + TensorRT engines/plans
+exports/
+# TensorRT SDK tar extraction
+third_party/
+weights/
+*.pt
+*.onnx
+*.plan
+*.engine
+
+# --- large intermediate predictions (regenerable from weights + tools/infer.py) ---
+metrics/pred_*.json
+
+# --- secrets: never commit any credential ---
+*.token
+*token*
+.env
+.netrc
+
+# --- local tooling / scratch ---
+.claude/
+__pycache__/
+*.pyc
+runs_*.log
+*.tmp
+.DS_Store
+
+# --- conference template assets (not our work); keep only our paper source+pdf+figs ---
+AETA2026_paper_1/*
+!AETA2026_paper_1/quantization_traffic_signs.tex
+!AETA2026_paper_1/quantization_traffic_signs.pdf
+!AETA2026_paper_1/fig1_delta_fan.pdf
+!AETA2026_paper_1/fig2_diff_capacity.pdf
+!AETA2026_paper_1/mybibfile.bib
+
+# --- journal-stage additions (2026-07-28) ---
+.venv_pilot/
+.venv_dfine/
+.venv_trt11/
+metrics/coco_pilot/pred_*.json
+*.zip
+*.aux
+*.fls
+*.fdb_latexmk
+journal_EAAI/compile.log
+
+# Ada cross-generation latency: engines are regenerable from the released
+# graphs; only the measurements are committed.
+metrics/ada/*.plan
