@@ -45,5 +45,12 @@ pyyaml           6.0.3
   instead; a real `trtexec` from the SDK tar is optional (`tools/trtexec_env.sh`).
 - Ultralytics exports TensorRT engines with a **static batch size of 1** unless
   `dynamic=True`; `tools/infer.py` therefore defaults to `--batch 1`.
-- RT-DETR through Ultralytics→TensorRT postprocesses incorrectly (normalized boxes
-  with negative w/h, mAP 0); it is excluded from the paper.
+- RT-DETR through Ultralytics→TensorRT emits `(1, 300, 6)` rows of *normalised*
+  `cxcywh` plus an explicit score and class, which neither decoder in
+  `coco_common.py` handles — an early note in this file recorded that as
+  "postprocesses incorrectly, excluded from the paper". It is not excluded.
+  `tools/rtdetr_decode.py` decodes that layout, and `tools/rtdetr_gate.py`
+  settles the coordinate convention against a 500-image probe before checking
+  the FP32 engine against the framework's own validation AP on the full set.
+  Both RT-DETR checkpoints pass that gate (deltas 0.0077 and 0.0086) and are
+  reported in the paper as a post-hoc addition.

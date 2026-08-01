@@ -1,0 +1,37 @@
+{
+ "observed_statistic": 0.049543485544907014,
+ "n_arrangements": 20,
+ "p_one_sided_exact": 0.05,
+ "min_attainable_p": 0.05,
+ "threshold_M": 20.0,
+ "per_model_DIFF": {
+  "yolo11n": -0.00521,
+  "yolo11s": -0.00048,
+  "yolo11m": 0.06316,
+  "yolo11l": 0.05333,
+  "yolo11x": 0.0557,
+  "yolov8s": -7e-05,
+  "yolov8m": 0.01831
+ },
+ "groups": {
+  "yolo11": {
+   "high": [
+    "yolo11m",
+    "yolo11l",
+    "yolo11x"
+   ],
+   "low": [
+    "yolo11n",
+    "yolo11s"
+   ]
+  },
+  "yolov8": {
+   "high": [
+    "yolov8m"
+   ],
+   "low": [
+    "yolov8s"
+   ]
+  }
+ }
+}

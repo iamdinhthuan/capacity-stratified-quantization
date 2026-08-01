@@ -1,0 +1,31 @@
+{
+ "chosen_mode": {
+  "rtdetr_l": "letterbox",
+  "rtdetr_x": "letterbox"
+ },
+ "failed": [],
+ "tol": 0.01,
+ "probe_images": 500,
+ "detail": {
+  "rtdetr_l": {
+   "probe": {
+    "stretch": 0.1364876708998891,
+    "letterbox": 0.5485755515651407
+   },
+   "mode": "letterbox",
+   "engine_AP": 0.5151176940062054,
+   "reference_AP": 0.5228624064714945,
+   "delta": 0.007744712465289072
+  },
+  "rtdetr_x": {
+   "probe": {
+    "stretch": 0.14739201554756567,
+    "letterbox": 0.5751658372978051
+   },
+   "mode": "letterbox",
+   "engine_AP": 0.5311413868991054,
+   "reference_AP": 0.5396950035505506,
+   "delta": 0.008553616651445162
+  }
+ }
+}

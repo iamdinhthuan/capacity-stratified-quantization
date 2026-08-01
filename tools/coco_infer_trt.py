@@ -26,6 +26,7 @@ except ImportError:
     import cuda.cudart as cudart
 
 from coco_common import COCO80_TO_91, CONF_FLOOR, decode_output, preprocess, val_images
+from rtdetr_decode import decode_rtdetr
 
 TRT_LOGGER = trt.Logger(trt.Logger.WARNING)
 
@@ -35,7 +36,7 @@ def cuda_check(err):
         raise RuntimeError(f"CUDA error: {err}")
 
 
-def run(engine_path, imgsz, conf, out_path, limit):
+def run(engine_path, imgsz, conf, out_path, limit, decoder="yolo", rtdetr_mode="stretch"):
     with open(engine_path, "rb") as f, trt.Runtime(TRT_LOGGER) as runtime:
         engine = runtime.deserialize_cuda_engine(f.read())
     context = engine.create_execution_context()
@@ -76,7 +77,11 @@ def run(engine_path, imgsz, conf, out_path, limit):
         cuda_check(err)
         cudart.cudaStreamSynchronize(stream)
 
-        for x1, y1, x2, y2, score, cls in decode_output(buf, conf, gain, padx, pady, w0, h0):
+        dets = (decode_rtdetr(buf, conf, w0, h0, mode=rtdetr_mode,
+                              gain=gain, padx=padx, pady=pady, imgsz=imgsz)
+                if decoder == "rtdetr"
+                else decode_output(buf, conf, gain, padx, pady, w0, h0))
+        for x1, y1, x2, y2, score, cls in dets:
             predictions.append({
                 "image_id": int(img_id),
                 "category_id": COCO80_TO_91[cls],
@@ -99,5 +104,10 @@ if __name__ == "__main__":
     ap.add_argument("--conf", type=float, default=CONF_FLOOR)
     ap.add_argument("--out", required=True)
     ap.add_argument("--limit", type=int, default=0, help="only first N images (smoke test)")
+    ap.add_argument("--decoder", choices=("yolo", "rtdetr"), default="yolo",
+                    help="rtdetr: (1,300,4+nc) normalised-cxcywh query head, no NMS")
+    ap.add_argument("--rtdetr-mode", choices=("stretch", "letterbox"), default="stretch",
+                    help="how the 640x640 input was produced; fixed by the FP32 gate")
     args = ap.parse_args()
-    run(args.engine, args.imgsz, args.conf, args.out, args.limit)
+    run(args.engine, args.imgsz, args.conf, args.out, args.limit,
+        decoder=args.decoder, rtdetr_mode=args.rtdetr_mode)

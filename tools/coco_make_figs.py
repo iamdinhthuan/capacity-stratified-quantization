@@ -85,17 +85,27 @@ for name, cfg in FAM.items():
                 mfc=cfg["color"] if s else "white", zorder=4)
     ax.plot([], [], cfg["marker"] + "-", color=cfg["color"], ms=6, mfc=cfg["color"], label=name)
 
+# Headroom for the corner annotations, measured from the interval extents
+# rather than the point estimates: it is YOLO26x's upper bound at +0.039,
+# not its marker at +0.026, that reaches the "small objects" label.
+_bounds = [b for c in FAM.values() for m, _ in c["models"]
+           for b in (boot(c["boot"])[m]["ci_DIFF"][0], boot(c["boot"])[m]["ci_DIFF"][2])]
+ax.set_ylim(min(_bounds) - 0.008, max(_bounds) + 0.017)
 ax.set_xscale("log")
 ax.set_xticks([2.5, 5, 10, 20, 40, 70])
+ax.set_xlim(2.1, 165)   # right margin for the two orientation labels
 ax.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
 ax.set_xlabel("Parameters (millions, log scale)")
 ax.set_ylabel(r"DIFF $=\Delta AP_{small}-\Delta AP_{large}$  (INT8)")
 ax.grid(axis="y", color="0.9", lw=0.6, zorder=0)
 ax.legend(loc="upper left", frameon=False, handletextpad=0.5)
-ax.annotate("small objects\nhurt more", xy=(0.985, 0.97), xycoords="axes fraction",
-            ha="right", va="top", fontsize=7.5, color="0.35")
-ax.annotate("large objects\nhurt more", xy=(0.985, 0.03), xycoords="axes fraction",
-            ha="right", va="bottom", fontsize=7.5, color="0.35")
+# Placed in the right margin, past the largest model, rather than over the
+# plot: at axes-fraction 0.985 the "small objects" label ran into YOLO26x's
+# interval, which reaches +0.039.
+ax.annotate("small objects\nhurt more", xy=(80, ax.get_ylim()[1]), xycoords="data",
+            ha="left", va="top", fontsize=7.5, color="0.35")
+ax.annotate("large objects\nhurt more", xy=(80, ax.get_ylim()[0]), xycoords="data",
+            ha="left", va="bottom", fontsize=7.5, color="0.35")
 ax.annotate("frozen 20M split", xy=(22.4, ax.get_ylim()[0] * 0.93),
             ha="center", fontsize=7, color="0.45")
 fig.tight_layout()
@@ -118,19 +128,20 @@ for ax, prec, title in zip(axes, ["int8", "fp8"], ["INT8", "FP8 (E4M3)"]):
     xs = [p for _, p in FAM["YOLO11"]["models"]]
     D = np.array([deltas(m, prec) for m, _ in FAM["YOLO11"]["models"]])  # (5,3)
     for j, (name, col, ls) in enumerate(STRATA):
-        ax.plot(xs, D[:, j], ls, color=col, lw=1.5, marker="o", ms=4, mfc=col, mec=col)
-        if prec == "int8":
-            ax.annotate(name, xy=(xs[-1] * 1.08, D[-1, j]), color=col, fontsize=7.5, va="center")
+        ax.plot(xs, D[:, j], ls, color=col, lw=1.5, marker="o", ms=4, mfc=col, mec=col,
+                label=name)
     ax.axhline(0, color="0.35", lw=0.7, ls=(0, (4, 3)))
     ax.set_xscale("log")
     ax.set_xticks([2.5, 5, 10, 20, 40, 70])
     ax.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
-    ax.set_xlim(2.0, 130)
+    ax.set_xlim(2.1, 72)   # no inline labels to leave room for any more
     ax.set_title(title, fontsize=9)
     ax.set_xlabel("Parameters (M, log)")
     ax.grid(axis="y", color="0.9", lw=0.6, zorder=0)
 axes[0].set_ylabel(r"$\Delta AP$ vs FP32 (mAP@[.5:.95])")
-axes[1].legend([l for l in axes[1].lines if l.get_linestyle() != (0, (4, 3))][:3], [n for n, _, _ in STRATA], loc="upper right", frameon=False)
+# One legend for both panels: they share the y-axis and the same three series.
+# Upper right of the FP8 panel is the only quadrant no curve passes through.
+axes[1].legend(loc="upper right", frameon=False, handlelength=2.2)
 fig.tight_layout()
 for ext in ("pdf", "png"):
     fig.savefig(os.path.join(FIGS, f"fig_coco_fan.{ext}"), dpi=200)

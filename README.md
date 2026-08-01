@@ -9,9 +9,16 @@ real TensorRT engines per device. Accuracy is then decomposed by object size,
 because the aggregate mAP drop that normally gates a quantized model averages
 over exactly the structure this paper is about.
 
-Twenty checkpoints, four detector families (YOLO11, YOLOv8, YOLO26, D-FINE),
-two benchmarks (TT100K, COCO val2017) and four devices (RTX 5090, RTX 4090,
-Jetson Orin Nano Super, plus a standalone Jetson AGX Thor kit).
+Twenty-two checkpoints across five detector families — YOLO11, YOLOv8 and
+YOLO26 (convolutional), D-FINE and RT-DETR (detection transformers) — on two
+benchmarks (TT100K, COCO val2017) and three measured devices: RTX 5090, RTX
+4090 and a Jetson Orin Nano Super. RT-DETR was added post hoc, after D-FINE
+collapsed, to test whether that collapse is a property of the architecture
+class; it enters no pre-registered test and is marked as such in the paper.
+
+No Jetson AGX Thor device was available, so the FP8 recommendation is measured
+on desktop GPUs and extrapolated to that generation rather than confirmed
+there.
 
 ## What is here
 
