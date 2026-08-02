@@ -59,7 +59,7 @@ Three analyses postdate the first release and are in `metrics/coco_5090/`:
 
 | File(s) | What it settles |
 |---|---|
-| `*_int8ent.json`, `calibrator_sensitivity.json` | INT8 re-quantized with `entropy` instead of the shipping `max` activation calibrator. Entropy is better on every convolutional checkpoint (loss cut 38-66%), and it removes most of the size structure with it: the capacity slope falls from +0.053 to +0.017, and to +0.001 without the nano rungs. The capacity result therefore belongs to the `max`-calibrated recipe, not to INT8 in general |
+| `*_int8ent.json`, `calibrator_sensitivity.json` | INT8 re-quantized with `entropy` instead of the shipping `max` activation calibrator, all 15 convolutional checkpoints and all 5 D-FINE variants. Entropy is better on every convolutional checkpoint (loss cut 38-66%, median 52%) and removes most of the size structure with it: the capacity slope falls from +0.0495 to +0.0153, and to +0.0011 (p=0.90) without the nano rungs. The capacity result therefore belongs largely to the `max`-calibrated recipe, not to INT8 in general. The FP8-versus-INT8 verdict is unaffected: FP8 still has the lower loss on all 15 even with entropy helping INT8 |
 | `boot2k_fp8_yolo11_bca.json` | The bias-corrected and accelerated intervals the plan asked for, computed for the YOLO11 FP8 arm with a leave-one-out jackknife over all 5,000 images. They are stricter than the percentile intervals reported first |
 | `sub500_dfine_s_int8selbb.json`, `ortdisc_*.json` | TensorRT against ONNX Runtime on the same 500 images for the backbone-quantized D-FINE-S graph: 0.2203 AP against 0.0039, with an ONNX Runtime FP32 control of 0.5160 |
 
