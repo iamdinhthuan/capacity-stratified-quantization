@@ -33,7 +33,7 @@ there.
 | `metrics/` | Per-model metric files (TT100K), `metrics/coco_5090/` and `metrics/coco_pilot/` (COCO, canonical and cross-device builds), `metrics/orin/`, `metrics/ada/` (cross-generation latency), plus every bootstrap, TOST and regression output |
 | `configs/` | Size-bin definitions, class map, and the **fixed calibration image lists** — the same 512 images used for every quantized graph |
 | `PREREGISTRATION_coco_confirmatory.md` | The frozen analysis plan for the confirmatory stage. Read this before the results |
-| `LICENSE` | MIT for the code and metric files; datasets and checkpoints keep their own licences |
+| `LICENSE` | MIT, covering the code and the metric files. The COCO and TT100K datasets and the detector checkpoints keep their own licences and are not redistributed here |
 | `environment.md`, `requirements.txt` | The exact stack; latency and power tables are meaningless without it |
 
 Not committed, because they are large or fully regenerable from the above: the
