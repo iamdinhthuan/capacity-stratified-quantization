@@ -2,7 +2,7 @@
 
 Fig 1  fig_coco_diff.pdf : DIFF = dAP_S - dAP_L under INT8 vs capacity (log-x),
        three CNN lineages with 95% bootstrap CIs; filled marker = CI excludes 0
-       (same convention as the TT100K figure); shaded 20-25M transition band.
+       (same convention as the TT100K figure); dotted line at the 20M split fixed in advance.
 Fig 2  fig_coco_fan.pdf  : per-stratum dAP vs capacity, YOLO11 canonical,
        INT8 (left) vs FP8 (right), shared y — FP8 flatness at a glance.
 
@@ -51,7 +51,7 @@ def boot(fname):
 # ------------------------------------------------------------------ Fig 1
 fig, ax = plt.subplots(figsize=(5.2, 3.2))
 ax.axhspan(-0.0005, 0.0005, color="none")
-ax.axvspan(20, 25.3, color="0.955", zorder=0)
+ax.axvline(20, color="0.55", lw=0.9, ls=(0, (2, 2)), zorder=0)
 ax.axhline(0, color="0.35", lw=0.8, ls=(0, (4, 3)), zorder=1)
 
 # The pooled fit, drawn because the segmented test finds no discontinuity:
@@ -106,8 +106,9 @@ ax.annotate("small objects\nhurt more", xy=(80, ax.get_ylim()[1]), xycoords="dat
             ha="left", va="top", fontsize=7.5, color="0.35")
 ax.annotate("large objects\nhurt more", xy=(80, ax.get_ylim()[0]), xycoords="data",
             ha="left", va="bottom", fontsize=7.5, color="0.35")
-ax.annotate("frozen 20M split", xy=(22.4, ax.get_ylim()[0] * 0.93),
-            ha="center", fontsize=7, color="0.45")
+ax.annotate("20M: split fixed in advance,\nnot a fitted breakpoint",
+            xy=(20, ax.get_ylim()[0] * 0.90), xytext=(21.5, ax.get_ylim()[0] * 0.90),
+            ha="left", va="bottom", fontsize=6.8, color="0.45")
 fig.tight_layout()
 for ext in ("pdf", "png"):
     fig.savefig(os.path.join(FIGS, f"fig_coco_diff.{ext}"), dpi=200)

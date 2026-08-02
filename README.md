@@ -1,9 +1,14 @@
-# Capacity-Stratified Analysis of INT8 and FP8 Quantization for Object Detection
+# Size-Stratified Evaluation of INT8 and FP8 Quantization for Object Detection
 
-Code, quantized-graph recipes, calibration lists, pre-registration document and
+Code, quantized-graph recipes, calibration lists, the frozen analysis plan and
 every per-model metric file behind the paper of the same name.
 
-Detectors are evaluated **as deployed** — official or single-recipe checkpoints
+The plan was frozen prospectively but was never deposited with a third-party
+registry, so its timeline is attested by the authors and by file history, not
+by an external timestamp. "Registered" throughout means *named in that frozen
+plan*.
+
+Detectors are evaluated **as deployed** — official checkpoints, or checkpoints trained here under one recipe,
 exported to ONNX, quantized once with NVIDIA Model Optimizer, and compiled into
 real TensorRT engines per device. Accuracy is then decomposed by object size,
 because the aggregate mAP drop that normally gates a quantized model averages
@@ -14,7 +19,7 @@ YOLO26 (convolutional), D-FINE and RT-DETR (detection transformers) — on two
 benchmarks (TT100K, COCO val2017) and three measured devices: RTX 5090, RTX
 4090 and a Jetson Orin Nano Super. RT-DETR was added post hoc, after D-FINE
 collapsed, to test whether that collapse is a property of the architecture
-class; it enters no pre-registered test and is marked as such in the paper.
+class; it enters no registered test and is marked as such in the paper.
 
 No Jetson AGX Thor device was available, so the FP8 recommendation is measured
 on desktop GPUs and extrapolated to that generation rather than confirmed
@@ -28,12 +33,27 @@ there.
 | `metrics/` | Per-model metric files (TT100K), `metrics/coco_5090/` and `metrics/coco_pilot/` (COCO, canonical and cross-device builds), `metrics/orin/`, `metrics/ada/` (cross-generation latency), plus every bootstrap, TOST and regression output |
 | `configs/` | Size-bin definitions, class map, and the **fixed calibration image lists** — the same 512 images used for every quantized graph |
 | `PREREGISTRATION_coco_confirmatory.md` | The frozen analysis plan for the confirmatory stage. Read this before the results |
+| `LICENSE` | MIT for the code and metric files; datasets and checkpoints keep their own licences |
 | `environment.md`, `requirements.txt` | The exact stack; latency and power tables are meaningless without it |
 
 Not committed, because they are large or fully regenerable from the above: the
 datasets, ONNX graphs, TensorRT engines, training checkpoints and per-image
 prediction files. The manuscript is not distributed here either. `tools/`
 rebuilds every artifact, figures included (`python tools/coco_make_figs.py`).
+
+## What the later analyses added
+
+Three analyses postdate the first release and are in `metrics/coco_5090/`:
+
+| File(s) | What it settles |
+|---|---|
+| `*_int8ent.json`, `calibrator_sensitivity.json` | INT8 re-quantized with `entropy` instead of the shipping `max` activation calibrator. Entropy is better on every convolutional checkpoint (loss cut 38-66%), and it removes most of the size structure with it: the capacity slope falls from +0.053 to +0.017, and to +0.001 without the nano rungs. The capacity result therefore belongs to the `max`-calibrated recipe, not to INT8 in general |
+| `boot2k_fp8_yolo11_bca.json` | The bias-corrected and accelerated intervals the plan asked for, computed for the YOLO11 FP8 arm with a leave-one-out jackknife over all 5,000 images. They are stricter than the percentile intervals reported first |
+| `sub500_dfine_s_int8selbb.json`, `ortdisc_*.json` | TensorRT against ONNX Runtime on the same 500 images for the backbone-quantized D-FINE-S graph: 0.2203 AP against 0.0039, with an ONNX Runtime FP32 control of 0.5160 |
+
+`tools/review_experiments2.sh`, `tools/entropy_finish.sh` and
+`tools/bca_fleet.sh` are the drivers for these three.
+
 
 ## Reproducing a single number
 
