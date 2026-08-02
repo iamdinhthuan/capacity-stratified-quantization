@@ -1,5 +1,7 @@
 # Size-Stratified Evaluation of INT8 and FP8 Quantization for Object Detection
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21754190.svg)](https://doi.org/10.5281/zenodo.21754190)
+
 Code, quantized-graph recipes, calibration lists, the frozen analysis plan and
 every per-model metric file behind the paper of the same name.
 
@@ -24,6 +26,16 @@ class; it enters no registered test and is marked as such in the paper.
 No Jetson AGX Thor device was available, so the FP8 recommendation is measured
 on desktop GPUs and extrapolated to that generation rather than confirmed
 there.
+
+## Citing this repository
+
+Archived on Zenodo. The concept DOI always resolves to the current version:
+
+```
+10.5281/zenodo.21754190          all versions
+10.5281/zenodo.21754191          v1.0-ivc-submission, the snapshot accompanying the article
+```
+
 
 ## What is here
 
