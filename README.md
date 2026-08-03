@@ -32,8 +32,9 @@ there.
 Archived on Zenodo. The concept DOI always resolves to the current version:
 
 ```
-10.5281/zenodo.21754190          all versions
-10.5281/zenodo.21754191          v1.0-ivc-submission, the snapshot accompanying the article
+10.5281/zenodo.21754190          all versions (resolves to the newest)
+10.5281/zenodo.21765340          v1.1-bca-complete, the snapshot the article cites
+10.5281/zenodo.21754191          v1.0-ivc-submission
 ```
 
 

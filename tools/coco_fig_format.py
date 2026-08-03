@@ -10,6 +10,8 @@ does not degrade the model but deletes it.
 import json, os
 import matplotlib
 matplotlib.use("Agg")
+matplotlib.rcParams["pdf.fonttype"] = 42   # TrueType, not Type 3
+matplotlib.rcParams["ps.fonttype"] = 42
 import matplotlib.pyplot as plt
 
 M = os.path.join(os.path.dirname(__file__), "..", "metrics", "coco_5090")

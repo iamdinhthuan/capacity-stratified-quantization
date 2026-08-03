@@ -47,9 +47,9 @@ pyyaml           6.0.3
   `dynamic=True`; `tools/infer.py` therefore defaults to `--batch 1`.
 - RT-DETR through Ultralytics→TensorRT emits `(1, 300, 6)` rows of *normalised*
   `cxcywh` plus an explicit score and class, which neither decoder in
-  `coco_common.py` handles — an early note in this file recorded that as
-  "postprocesses incorrectly, excluded from the paper". It is not excluded.
-  `tools/rtdetr_decode.py` decodes that layout, and `tools/rtdetr_gate.py`
+  `coco_common.py` handles. RT-DETR is in the paper as the post-hoc family;
+  an early note here wrongly suggested otherwise before the dedicated decoder
+  existed. `tools/rtdetr_decode.py` decodes that layout, and `tools/rtdetr_gate.py`
   settles the coordinate convention against a 500-image probe before checking
   the FP32 engine against the framework's own validation AP on the full set.
   Both RT-DETR checkpoints pass that gate (deltas 0.0077 and 0.0086) and are
