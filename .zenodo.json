@@ -1,0 +1,14 @@
+{
+  "title": "Size-Stratified Evaluation of INT8 and FP8 Quantization for Object Detection: code, configurations and per-model metrics",
+  "upload_type": "software",
+  "license": "MIT",
+  "creators": [
+    {"name": "Nguyen, Dinh Thuan", "affiliation": "Faculty of Electrical and Electronics Engineering, Ton Duc Thang University, Ho Chi Minh City, Vietnam"},
+    {"name": "Nguyen, Phuong Lam", "affiliation": "Faculty of Electrical and Electronics Engineering, Ton Duc Thang University, Ho Chi Minh City, Vietnam"},
+    {"name": "Nguyen, Vinh Huy", "affiliation": "Center of Visualization and Simulation, Duy Tan University, Da Nang, Vietnam"},
+    {"name": "Elara, Mohan Rajesh", "affiliation": "ROAR Lab, Engineering Product Development, Singapore University of Technology and Design, Singapore"},
+    {"name": "Le, Anh Vu", "affiliation": "Advanced Intelligent Technology Research Group, Faculty of Electrical and Electronics Engineering, Ton Duc Thang University, Ho Chi Minh City, Vietnam"}
+  ],
+  "keywords": ["model quantization", "object detection", "INT8", "FP8", "TensorRT", "small object detection", "evaluation methodology"],
+  "description": "Code, quantized-graph recipes, calibration image lists, the frozen analysis plan and every per-model metric file behind the article \"Size-Stratified Evaluation of INT8 and FP8 Quantization for Object Detection\". Twenty-two official COCO checkpoints across five detector families (YOLO11, YOLOv8, YOLO26, D-FINE, RT-DETR), evaluated as real TensorRT engines on three measured devices (RTX 5090, RTX 4090, Jetson Orin Nano Super), with a replication under controlled training on TT100K. Datasets and detector checkpoints are not redistributed; they remain under their own licences."
+}
